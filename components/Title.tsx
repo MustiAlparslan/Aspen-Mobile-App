@@ -10,7 +10,6 @@ interface PropTypes {
 }
 
 export default function Title({ text, size, weight, ...props }: PropTypes) {
-    console.log(props?.style);
     return (
         <Text  style={{ fontSize: size, fontWeight: weight, ...props?.style }}>{text}</Text>
     )

@@ -3,7 +3,7 @@ import { Text, View } from 'react-native'
 
 function test() {
   return (
-    <View><Text>test</Text></View>
+    <View style={{ flex: 1 }}><Text>test</Text></View>
   )
 }
 

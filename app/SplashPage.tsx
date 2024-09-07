@@ -4,9 +4,9 @@ import { Image, ImageBackground, Text, TouchableOpacity, View } from 'react-nati
 
 
 function SplashPage() {
-    
+
     const OnPress = () => {
-        router.replace('(tabs)') ;
+        router.replace('(tabs)');
     }
 
     return (
@@ -20,13 +20,12 @@ function SplashPage() {
                 />
             </View>
             <View style={{ marginBottom: 50, flex: 1, justifyContent: 'flex-end', width: '100%' }}>
-                <View style={{ paddingHorizontal: 15, marginBottom: 10 }}>
+                <View style={{ paddingHorizontal: 25, marginBottom: 25 }}>
                     <Text style={{ fontSize: 24, color: 'white', marginBottom: -5 }}>Plan Your</Text>
                     <Text style={{ fontSize: 40, color: 'white', marginBottom: -5 }}>Luxurious</Text>
                     <Text style={{ fontSize: 40, color: 'white', marginBottom: 0 }}>Vacation</Text>
                 </View>
-
-                <View style={{ paddingHorizontal: 10, width: '100%' }}>
+                <View style={{ paddingHorizontal: 20, width: '100%' }}>
                     <TouchableOpacity onPress={OnPress} style={{ backgroundColor: '#196EEE', height: 52, justifyContent: 'center', alignItems: 'center', borderRadius: 23 }}>
                         <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>Explore</Text>
                     </TouchableOpacity>

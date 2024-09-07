@@ -5,8 +5,8 @@ import HomePage from '../pages/HomePage';
 export default function HomeScreen() {
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <HomePage/>
+    <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
+      <HomePage />
     </SafeAreaView>
   );
 }
