@@ -13,7 +13,7 @@ export default function SearchBar() {
                 <TextInput
                     placeholder='Find things to do'
                     onChangeText={newText => SetSearch(newText)}
-                    style={{ color: '#B8B8B8', fontSize: 14, paddingHorizontal: 16, backgroundColor: '#F3F8FE', height: 52, }} />
+                    style={{ width: '100%', color: '#B8B8B8', fontSize: 14, paddingHorizontal: 16, backgroundColor: '#F3F8FE', height: 52, }} />
             </View>
         </View>
     )

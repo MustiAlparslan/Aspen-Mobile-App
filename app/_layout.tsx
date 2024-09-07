@@ -32,9 +32,12 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider  value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack initialRouteName='SplashPage'>
-        <Stack.Screen name="SplashPage" options={{ headerShown: false }} />
+    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      <Stack initialRouteName='SplashPage' screenOptions={{
+        animation: 'slide_from_right',
+        headerShown: false,
+      }}>
+        <Stack.Screen name="SplashPage" options={{ headerShown: false }} /> 
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
       </Stack>
