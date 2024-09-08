@@ -1,46 +1,55 @@
 import React, { useState } from 'react'
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import Scroll from '../Scroll';
+import useStore from '@/store/useStore';
+
 
 interface List {
     id: number;
     defaultActive: boolean;
     isActive: boolean;
     title: string;
+    name: string;
 }
 
 const CategoryMap = () => {
-    const [list, setList] = useState([
+    const { currentCategory, setCurrentCategory } = useStore();
+
+    const [list, setList] = useState<List[]>([
         {
             id: 1,
             title: 'Location',
+            name: 'Konumlar',
             defaultActive: true,
             isActive: true
         },
         {
             id: 2,
             title: 'Hotels',
+            name: 'Oteller',
             defaultActive: false,
             isActive: false
-
         },
         {
             id: 3,
             title: 'Food',
+            name: 'Restoranlar',
             defaultActive: false,
             isActive: false
-
         },
         {
             id: 4,
             title: 'Adventure',
+            name: 'Macera',
             defaultActive: false,
             isActive: false
         },
+    ]);
 
-    ])
 
     const OnPress = (item: List) => {
+        setCurrentCategory(item?.title);
+
         setList(prevList =>
             prevList.map(category => {
                 if (item.id === category.id) {
@@ -77,7 +86,7 @@ const CategoryMap = () => {
                 >
                     <Text style={[styles.text,
                     item.isActive ? styles.textValid : styles.textInvalid]}
-                    >{item?.title}</Text>
+                    >{item?.name}</Text>
                 </TouchableOpacity>
             )) : <></>
             }

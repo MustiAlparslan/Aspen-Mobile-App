@@ -5,6 +5,7 @@ import Title from '../Title';
 import Scroll from '../Scroll';
 import { useQuery } from '@tanstack/react-query';
 import { GET_POPULAR } from '@/api/requests';
+import useStore from '@/store/useStore';
 
 interface Popular {
     id: number;
@@ -16,13 +17,15 @@ interface Popular {
 
 
 function Popular() {
+    const { currentCategory } = useStore();
+
     const { data, isLoading, error } = useQuery<Popular[]>({
-        queryKey: ['popular'],
+        queryKey: ['popular', currentCategory],
         queryFn: GET_POPULAR,
     });
 
     if (isLoading) {
-        return <ActivityIndicator size="large" color="#0000ff" />;
+        return <ActivityIndicator size="large" color="#0000ff" />
     }
 
     if (error) {
@@ -55,7 +58,7 @@ const PopularCard: React.FC<{ data: Popular }> = ({ data }) => {
                     <View style={{ alignItems: 'center', borderRadius: 25, paddingHorizontal: 15, paddingVertical: 5, backgroundColor: '#4D5652' }}>
                         <Text numberOfLines={1}
                             ellipsizeMode="tail"
-                            style={{ color: 'white', fontWeight: '400', minWidth: 30 }}
+                            style={{ color: 'white', fontWeight: '400', minWidth: 40, maxWidth: 120, }}
                         >{data.title}</Text>
                     </View>
                     <View style={{ width: 70, marginTop: 4, paddingHorizontal: 15, paddingVertical: 5, alignItems: 'center', borderRadius: 25, padding: 4, backgroundColor: '#4D5652', flexDirection: 'row', gap: 3 }}>
@@ -78,8 +81,8 @@ const PopularCard: React.FC<{ data: Popular }> = ({ data }) => {
 const HeaderCard = () => {
     return (
         <View style={{ flexDirection: 'row', paddingHorizontal: 8, justifyContent: 'space-between', alignItems: 'center' }}>
-            <Title text='Popular' size={21} weight='bold' />
-            <Text style={{ fontSize: 14, fontWeight: 'medium', color: '#196EEE', marginRight: 5 }}>See All</Text>
+            <Title text='Popülerler' size={21} weight='bold' />
+            <Text style={{ fontSize: 14, fontWeight: 'medium', color: '#196EEE', marginRight: 5 }}>Tamamını Gör</Text>
         </View>
     )
 }

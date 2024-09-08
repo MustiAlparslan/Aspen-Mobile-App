@@ -12,7 +12,7 @@ export default function HomeHeader() {
                 <Text style={{ fontSize: 15 }}>Explore</Text>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
                     <Icon name='location' size={15} color={'#196EEE'} />
-                    <Text style={{ fontSize: 15 }}>Aspen, USA</Text>
+                    <Text style={{ fontSize: 15 }}>Türkiye,TR</Text>
                     <MaterialIcon name='keyboard-arrow-down' size={25} color={'#196EEE'} />
                 </View>
             </View>

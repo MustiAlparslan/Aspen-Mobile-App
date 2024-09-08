@@ -5,6 +5,7 @@ import Title from '../Title';
 import Scroll from '../Scroll';
 import { useQuery } from '@tanstack/react-query';
 import { GET_RECOMMENDS } from '@/api/requests';
+import useStore from '@/store/useStore';
 
 interface Recommend {
     id: number;
@@ -14,8 +15,10 @@ interface Recommend {
 }
 
 export default function Recommended() {
+    const { currentCategory } = useStore();
+
     const { data, isLoading, error } = useQuery<Recommend[]>({
-        queryKey: ['recommends'],
+        queryKey: ['recommends', currentCategory],
         queryFn: GET_RECOMMENDS,
     });
 
@@ -29,7 +32,7 @@ export default function Recommended() {
 
     return (
         <View style={{ marginTop: 22, marginBottom: 70, flex: 1 }}>
-            <Title text='Recommended' size={21} weight='bold' style={{ padding: 8 }} />
+            <Title text='Önerilenler' size={21} weight='bold' style={{ padding: 8 }} />
             <Scroll style={{ paddingLeft: 5, paddingVertical: 5 }}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}

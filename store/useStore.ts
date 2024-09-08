@@ -1,23 +1,17 @@
-import create from 'zustand';
+import { create } from 'zustand';
 
-// StoreState interface'i ile state'i ve fonksiyonları tanımlayın
 interface StoreState {
-  recommends: any[]; // Array olarak tutulan veriler
-  GET_RECOMMENDS: () => Promise<void>; // Async fonksiyon
+  currentCategory: string;
+  currentCountry: string;
+  setCurrentCategory: (category: string) => void;
+  setCurrnetCountry: (c: string) => void;
 }
 
-// Zustand store'u oluşturun
 const useStore = create<StoreState>((set) => ({
-  recommends: [], // Başlangıçta boş bir array
-  GET_RECOMMENDS: async () => {
-    try {
-      const response = await fetch('http://localhost:3000/api/recommends'); // API'yi çağırın
-      const data = await response.json();
-      set({ recommends: data }); // Gelen veriyi store'a yerleştirin
-    } catch (error) {
-      console.error('Veri alınırken hata oluştu:', error);
-    }
-  }
+  currentCategory: 'location',
+  currentCountry: 'TR',
+  setCurrentCategory: (category) => set({ currentCategory: category }),
+  setCurrnetCountry: (c) => set({ currentCountry: c }),
 }));
 
 export default useStore;
