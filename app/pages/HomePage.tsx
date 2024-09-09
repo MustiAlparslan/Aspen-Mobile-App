@@ -8,21 +8,25 @@ import SearchBar from '@/components/home/SearchBar';
 
 function HomePage() {
   return (
-    <ScrollView
-      style={{  backgroundColor: 'white', flex: 1 }}
-      showsHorizontalScrollIndicator={false}
+    <View
+      style={{ flex: 1 }}
     >
       {/* Header */}
       <HomeHeader />
-      {/* SEARCH BAR  */}
-      <SearchBar />
-      {/* CATEGORY */}
-      <Category />
-      {/* POPULAR */}
-      <Popular />
-      {/* Recommended */}
-      <Recommended />
-    </ScrollView>
+      <ScrollView
+        style={{ flex: 1, }}
+        showsHorizontalScrollIndicator={false}
+      >
+        {/* SEARCH BAR  */}
+        <SearchBar />
+        {/* CATEGORY */}
+        <Category />
+        {/* POPULAR */}
+        <Popular />
+        {/* Recommended */}
+        <Recommended />
+      </ScrollView>
+    </View>
   )
 }
 

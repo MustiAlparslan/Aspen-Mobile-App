@@ -11,7 +11,7 @@ export default function SearchBar() {
                     <Icon name='search1' size={20} color={'#B8B8B8'} />
                 </TouchableOpacity>
                 <TextInput
-                    placeholder='Find things to do'
+                    placeholder='Ara..'
                     onChangeText={newText => SetSearch(newText)}
                     style={{ width: '100%', color: '#B8B8B8', fontSize: 14, paddingHorizontal: 16, backgroundColor: '#F3F8FE', height: 52, }} />
             </View>

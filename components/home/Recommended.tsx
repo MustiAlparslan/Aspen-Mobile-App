@@ -1,5 +1,5 @@
 import React from 'react'
-import CommintyIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import FeatherIcon from 'react-native-vector-icons/Feather';
 import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native'
 import Title from '../Title';
 import Scroll from '../Scroll';
@@ -15,10 +15,10 @@ interface Recommend {
 }
 
 export default function Recommended() {
-    const { currentCategory } = useStore();
+    const { currentCategory ,currentCountry} = useStore();
 
     const { data, isLoading, error } = useQuery<Recommend[]>({
-        queryKey: ['recommends', currentCategory],
+        queryKey: ['recommends', currentCategory,currentCountry],
         queryFn: GET_RECOMMENDS,
     });
 
@@ -32,7 +32,7 @@ export default function Recommended() {
 
     return (
         <View style={{ marginTop: 22, marginBottom: 70, flex: 1 }}>
-            <Title text='Önerilenler' size={21} weight='bold' style={{ padding: 8 }} />
+            <Title text='Önerilen Yerler' size={21} weight='bold' style={{ padding: 8 }} />
             <Scroll style={{ paddingLeft: 5, paddingVertical: 5 }}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
@@ -59,7 +59,7 @@ const RecommendedCard: React.FC<{ data: Recommend }> = ({ data }) => {
             <Image src={data.image} style={{ width: 180, height: 100, backgroundColor: 'yellow', borderRadius: 14 }} />
             <Text style={{ fontSize: 15, fontWeight: 'medium', marginTop: 5 }}>{data?.title}</Text>
             <View style={{ flexDirection: 'row', gap: 5, alignItems: 'center' }}>
-                <CommintyIcon name='finance' size={21} color={'#84ABE4'} />
+                <FeatherIcon name='trending-up' size={21} color={'#84ABE4'} />
                 <Text style={{ fontSize: 12, color: '#3A544F' }}>En İyi Fiyat</Text>
             </View>
         </View>

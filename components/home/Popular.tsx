@@ -6,6 +6,8 @@ import Scroll from '../Scroll';
 import { useQuery } from '@tanstack/react-query';
 import { GET_POPULAR } from '@/api/requests';
 import useStore from '@/store/useStore';
+import { router } from 'expo-router';
+import FavoriteHeart from '../FavoriteHeart';
 
 interface Popular {
     id: number;
@@ -17,10 +19,10 @@ interface Popular {
 
 
 function Popular() {
-    const { currentCategory } = useStore();
+    const { currentCategory, setDetails, currentCountry } = useStore();
 
     const { data, isLoading, error } = useQuery<Popular[]>({
-        queryKey: ['popular', currentCategory],
+        queryKey: ['popular', currentCategory, currentCountry],
         queryFn: GET_POPULAR,
     });
 
@@ -51,8 +53,16 @@ const PopularMap: React.FC<{ data: Popular[] }> = ({ data }) => {
     );
 }
 const PopularCard: React.FC<{ data: Popular }> = ({ data }) => {
+    const { setDetails } = useStore();
+
+    const OnPress = (details: Popular) => {
+        setDetails(details)
+        router.navigate('Details');
+    }
+
+
     return (
-        <View style={{ marginRight: 12, borderRadius: 25, width: 220, height: 240, }} >
+        <TouchableOpacity onPress={() => OnPress(data)} style={{ marginRight: 12, borderRadius: 25, width: 220, height: 240, }} >
             <ImageBackground imageStyle={{ borderRadius: 25 }} src={data.image} style={{ borderRadius: 25, flex: 1, height: 240, width: 220, flexDirection: 'row', alignItems: 'flex-end', paddingBottom: 4, justifyContent: 'space-between', }} resizeMode="stretch" >
                 <View style={{ height: 65, paddingHorizontal: 12 }}>
                     <View style={{ alignItems: 'center', borderRadius: 25, paddingHorizontal: 15, paddingVertical: 5, backgroundColor: '#4D5652' }}>
@@ -63,16 +73,14 @@ const PopularCard: React.FC<{ data: Popular }> = ({ data }) => {
                     </View>
                     <View style={{ width: 70, marginTop: 4, paddingHorizontal: 15, paddingVertical: 5, alignItems: 'center', borderRadius: 25, padding: 4, backgroundColor: '#4D5652', flexDirection: 'row', gap: 3 }}>
                         <Icon name="star" size={15} color="gold" />
-                        <Text style={{ color: 'white', fontSize: 12 }}>{data?.rating}</Text>
+                        <Text style={{ color: 'white', fontSize: 12 }}>{data?.rating}.0</Text>
                     </View>
                 </View>
                 <View style={{ marginBottom: 10, marginEnd: 12 }}>
-                    <TouchableOpacity style={{ width: 30, height: 30, backgroundColor: 'white', borderRadius: 50, alignItems: 'center', justifyContent: 'center' }}>
-                        <Icon name="heart" size={18} color="red" />
-                    </TouchableOpacity>
+                    <FavoriteHeart />
                 </View>
             </ImageBackground>
-        </View>
+        </TouchableOpacity>
     )
 }
 
@@ -81,7 +89,7 @@ const PopularCard: React.FC<{ data: Popular }> = ({ data }) => {
 const HeaderCard = () => {
     return (
         <View style={{ flexDirection: 'row', paddingHorizontal: 8, justifyContent: 'space-between', alignItems: 'center' }}>
-            <Title text='Popülerler' size={21} weight='bold' />
+            <Title text='Popüler Yerler' size={21} weight='bold' />
             <Text style={{ fontSize: 14, fontWeight: 'medium', color: '#196EEE', marginRight: 5 }}>Tamamını Gör</Text>
         </View>
     )

@@ -1,5 +1,6 @@
 import React from 'react'
-import { Text } from 'react-native'
+import { Text, View } from 'react-native'
+import { ThemedText } from './ThemedText';
 
 interface PropTypes {
     text: string;
@@ -11,6 +12,6 @@ interface PropTypes {
 
 export default function Title({ text, size, weight, ...props }: PropTypes) {
     return (
-        <Text  style={{ fontSize: size, fontWeight: weight, ...props?.style }}>{text}</Text>
+        <Text style={{ fontSize: size, fontWeight: weight, ...props?.style }} numberOfLines={1} ellipsizeMode="tail">{text}</Text>
     )
 }

@@ -1,11 +1,13 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
+import { router, Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { TouchableOpacity, View } from 'react-native';
+import AntDesign from '@expo/vector-icons/AntDesign';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -37,7 +39,18 @@ export default function RootLayout() {
         animation: 'slide_from_right',
         headerShown: false,
       }}>
-        <Stack.Screen name="SplashPage" options={{ headerShown: false }} /> 
+        <Stack.Screen name="SplashPage" options={{ headerShown: false }} />
+        <Stack.Screen name="Details" options={{
+          title: '',
+          headerShown: true,
+          headerTransparent: true,
+
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => router.back()} style={{ borderRadius: 8, width: 40, height: 40, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white' }}>
+              <AntDesign name="left" size={24} color="#B8B8B8" />
+            </TouchableOpacity>
+          ),
+        }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
       </Stack>

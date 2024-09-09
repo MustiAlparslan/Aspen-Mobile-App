@@ -4,6 +4,9 @@ import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { View } from 'react-native';
+import Entypo from '@expo/vector-icons/Entypo';
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -35,20 +38,18 @@ export default function TabLayout() {
           name="index"
           options={{
             tabBarShowLabel: false,
-            tabBarItemStyle: {
-              // backgroundColor: focused ? Colors[colorScheme ?? 'light'].activeBackground : Colors[colorScheme ?? 'light'].inactiveBackground, // Aktif/Pasif sekme arka plan rengi
-            },
-            tabBarIcon: ({ color, focused }) => (
-              <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+            tabBarIcon: ({ focused }) => (
+              <Entypo name='home' color={focused ? '#196EEE' : '#B8B8B8'} size={25} />
             ),
           }}
         />
         <Tabs.Screen
-          name="explore"
+          name="favorites"
           options={{
             tabBarShowLabel: false,
-            tabBarIcon: ({ color, focused }) => (
-              <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+            tabBarIcon: ({ focused }) => (
+              <Entypo name='heart' color={focused ? '#196EEE' : '#B8B8B8'} size={25} />
+
             ),
           }}
         />
@@ -56,8 +57,8 @@ export default function TabLayout() {
           name="test"
           options={{
             tabBarShowLabel: false,
-            tabBarIcon: ({ color, focused }) => (
-              <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+            tabBarIcon: ({ focused }) => (
+              <FontAwesome5 name="user-alt" color={focused ? '#196EEE' : '#B8B8B8'} size={21} F />
             ),
           }}
         />

@@ -49,7 +49,6 @@ const CategoryMap = () => {
 
     const OnPress = (item: List) => {
         setCurrentCategory(item?.title);
-
         setList(prevList =>
             prevList.map(category => {
                 if (item.id === category.id) {
@@ -97,7 +96,7 @@ const CategoryMap = () => {
 export default function Category() {
     return (
         <View style={{ marginTop: 32, paddingHorizontal: 8, flexDirection: 'row', alignItems: 'center', gap: 24 }}>
-            <Scroll horizontal={true}>
+            <Scroll horizontal={true} showsHorizontalScrollIndicator={false}>
                 <CategoryMap />
             </Scroll>
         </View>
